@@ -18,6 +18,6 @@ func main() {
 
 	NN := newNeuralNet([]int{784, 16, 16, 10})
 
-	NN.sgd(X_train_dl, y_train_dl, X_val_dl, y_val_dl, 25, 3.0)
+	NN.sgd(X_train_dl, y_train_dl, X_val_dl, y_val_dl, 25, 5.0)
 
 }
