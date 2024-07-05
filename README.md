@@ -27,8 +27,8 @@ With exactly the same parameters (including learning rate) I got 93% accuracy (i
 So we got at least an 8-fold acceleration in computation time. Whether it was worth it or not remains an open question for the reader, but coding it was much more time-consuming (and a little bit more painful) than in python
 ## Future plans
 If I don't abandon this project I can improve it in following ways:
-* Get rid of all dependencies and make the project run in plain Go
-* Optimize tensor operations (e.g. matrix multiplication) using parallel computations
+* Get rid of all dependencies and make the project run in plain Go (finished replacing the first package)
+* Optimize tensor operations (e.g. matrix multiplication) using concurrent computations (done :white_check_mark:)
 * Add other activation functions and losses (ReLU and CrossEntropy being the most widespread)
 * Add ADAM optimizer
 
