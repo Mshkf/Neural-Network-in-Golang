@@ -14,11 +14,6 @@ func handleErr(err error) {
 	}
 }
 
-func noErr(X t.Tensor, err error) t.Tensor {
-	handleErr(err)
-	return X
-}
-
 func checkData(X, y t.Tensor, err error, mode string) {
 	handleErr(err)
 	var sampleSize int

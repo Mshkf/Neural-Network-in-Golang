@@ -34,10 +34,8 @@ func costDerivative(outp, y Matrix) Matrix {
 }
 
 func computeZ(weights, activations, biases Matrix) Matrix {
-	wPart := activations.MatMul(weights)
-	ones := NewMatrix(activations.Shape()[0], 1, "ones")
-	bPart := ones.MatMul(biases)
-	z := wPart.Add(bPart)
+	sampleSize := activations.Shape()[0]
+	z := activations.MatMul(weights).Add(biases.VDuplicate(sampleSize))
 	return z
 }
 
