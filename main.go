@@ -22,8 +22,6 @@ func main() {
 	saveImage(X_train_dl[1])
 
 	NN := newNeuralNet([]int{784, 16, 16, 10})
-	fmt.Println(NN.evaluate(X_train_dl, y_train_dl))
-	fmt.Println(NN.evaluate(X_val_dl, y_val_dl))
 
 	start := time.Now()
 	NN.sgd(X_train_dl, y_train_dl, X_val_dl, y_val_dl, 25, 5.0)
