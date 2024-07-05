@@ -36,12 +36,12 @@ func checkData(X, y t.Tensor, err error, mode string) {
 	}
 }
 
-func saveImage(inputs t.Tensor) {
+func saveImage(inputs Matrix) {
 	cols := inputs.Shape()[1]
 	imageBackend := make([]uint8, cols)
 	for i := 0; i < cols; i++ {
-		v, _ := inputs.At(0, i)
-		imageBackend[i] = uint8((v.(float64) - 0.1) * 0.9 * 255)
+		v := inputs[0][i]
+		imageBackend[i] = uint8((v - 0.1) * 0.9 * 255)
 	}
 	img := &image.Gray{
 		Pix:    imageBackend,
