@@ -9,17 +9,15 @@ import (
 type Matrix [][]float64
 
 func NewMatrix(rows, cols int, filling string) Matrix {
-	m := make([][]float64, rows)
+	m := make(Matrix, rows)
 	for i := range m {
 		m[i] = make([]float64, cols)
 
 		switch filling {
 		case "empty":
-			// do nothing
 		case "zeros":
-			for j := range m[i] {
-				m[i][j] = 0
-			}
+			// all values are 0 by default
+			// but that is not explicit
 		case "ones":
 			for j := range m[i] {
 				m[i][j] = 1
@@ -134,20 +132,21 @@ func (m Matrix) Transpose() Matrix {
 	return result
 }
 
-func (m1 Matrix) MatMul(m2 Matrix) Matrix {
-	if len(m1[0]) != len(m2) {
-		panic("Wrong dimentions for matrix multiplication")
-	}
-	result := NewMatrix(len(m1), len(m2[0]), "zeros")
-	for i := range m1 {
-		for j := range m2[0] {
-			for k := 0; k < len(m1[0]); k++ {
-				result[i][j] += m1[i][k] * m2[k][j]
-			}
-		}
-	}
-	return result
-}
+// non-optimal matmul
+//func (m1 Matrix) MatMul(m2 Matrix) Matrix {
+//	if len(m1[0]) != len(m2) {
+//		panic("Wrong dimentions for matrix multiplication")
+//	}
+//	result := NewMatrix(len(m1), len(m2[0]), "zeros")
+//	for i := range m1 {
+//		for j := range m2[0] {
+//			for k := 0; k < len(m1[0]); k++ {
+//				result[i][j] += m1[i][k] * m2[k][j]
+//			}
+//		}
+//	}
+//	return result
+//}
 
 func (m Matrix) Apply(fn func(float64) float64) Matrix {
 	result := NewMatrix(len(m), len(m[0]), "empty")

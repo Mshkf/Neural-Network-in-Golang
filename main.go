@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gorgonia.org/gorgonia/examples/mnist"
 	t "gorgonia.org/tensor"
+	"time"
 )
 
 func main() {
@@ -24,6 +25,8 @@ func main() {
 	fmt.Println(NN.evaluate(X_train_dl, y_train_dl))
 	fmt.Println(NN.evaluate(X_val_dl, y_val_dl))
 
+	start := time.Now()
 	NN.sgd(X_train_dl, y_train_dl, X_val_dl, y_val_dl, 25, 5.0)
+	fmt.Printf("Training took %s", time.Since(start))
 
 }
