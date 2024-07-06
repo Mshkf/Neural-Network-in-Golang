@@ -72,7 +72,7 @@ func saveImage(inputs Matrix) {
 	imageBackend := make([]uint8, cols)
 	for i := 0; i < cols; i++ {
 		v := inputs[0][i]
-		imageBackend[i] = uint8((v - 0.1) * 0.9 * 255)
+		imageBackend[i] = uint8(v * 255)
 	}
 	img := &image.Gray{
 		Pix:    imageBackend,
