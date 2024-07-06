@@ -2,8 +2,17 @@ package main
 
 import (
 	"encoding/binary"
+	"image"
+	"image/png"
+	"log"
 	"os"
 )
+
+func handleErr(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
 func safeRead(f *os.File, n int) []byte {
 	b := make([]byte, n)
@@ -50,10 +59,27 @@ func readImageFile(path string) Matrix {
 	result := NewMatrix(nSamples, nRows*nCols, "empty")
 	for i := 0; i < nSamples; i++ {
 		for j := 0; j < nRows*nCols; j++ {
-			result[i][j] = float64(labels[i*nRows*nCols+j])
+			result[i][j] = float64(labels[i*nRows*nCols+j]) / 255.0
 		}
 	}
 	err = f.Close()
 	handleErr(err)
 	return result
+}
+
+func saveImage(inputs Matrix) {
+	cols := inputs.Shape()[1]
+	imageBackend := make([]uint8, cols)
+	for i := 0; i < cols; i++ {
+		v := inputs[0][i]
+		imageBackend[i] = uint8((v - 0.1) * 0.9 * 255)
+	}
+	img := &image.Gray{
+		Pix:    imageBackend,
+		Stride: 28,
+		Rect:   image.Rect(0, 0, 28, 28),
+	}
+	w, _ := os.Create("output.png")
+	err := png.Encode(w, img)
+	handleErr(err)
 }

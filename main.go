@@ -6,13 +6,6 @@ import (
 )
 
 func main() {
-	//X_train, y_train, err := mnist.Load("train", "./data", t.Float64)
-	//checkData(X_train, y_train, err, "train")
-	//X_val, y_val, err := mnist.Load("test", "./data", t.Float64)
-	//checkData(X_val, y_val, err, "test")
-	//
-	//X_train_m, y_train_m := ToMatrix(X_train), ToMatrix(y_train)
-	//X_val_m, y_val_m := ToMatrix(X_val), ToMatrix(y_val)
 	X_train := readImageFile("./data/train-images-idx3-ubyte")
 	y_train := readLabelFile("./data/train-labels-idx1-ubyte")
 	X_val := readImageFile("./data/t10k-images-idx3-ubyte")
