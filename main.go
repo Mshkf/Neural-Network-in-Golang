@@ -20,6 +20,8 @@ func main() {
 
 	start := time.Now()
 	NN.sgd(X_train_dl, y_train_dl, X_val_dl, y_val_dl, 25, 5.0)
-	fmt.Printf("Training took %s", time.Since(start))
+	fmt.Printf("\nTraining took %s\n\n", time.Since(start))
+	fmt.Println("Print \"Enter\" to close")
+	fmt.Scanln() // so exe file won't close
 
 }
